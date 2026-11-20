@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience — Ravi Kumar</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-brand">
+      <a href="index.html"><span class="brand-marker">RK</span></a>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about"   class="nav-link">About</a></li>
+        <li><a href="projects.html"      class="nav-link">Projects</a></li>
+        <li><a href="experience.html"    class="nav-link active">Experience</a></li>
+        <li><a href="resume.html"        class="nav-link">Resume</a></li>
+        <li><a href="contact.html"       class="nav-link nav-cta">Contact Me</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ PAGE HERO ═══════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">My Journey</span>
+      <h1 class="section-title" style="text-align:left; margin-bottom:0;">Experience</h1>
+    </div>
+    <!-- Animated Wave divider -->
+    <div class="hero-wave">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave-exp" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax-waves">
+          <use class="wave-layer wave-1" xlink:href="#gentle-wave-exp" x="48" y="0" />
+          <use class="wave-layer wave-2" xlink:href="#gentle-wave-exp" x="48" y="3" />
+          <use class="wave-layer wave-3" xlink:href="#gentle-wave-exp" x="48" y="5" />
+          <use class="wave-layer wave-4" xlink:href="#gentle-wave-exp" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ COMING SOON ═══════════════════════════ -->
+  <section class="coming-soon-section">
+    <div class="container">
+      <div class="coming-soon-card">
+        <div class="coming-soon-icon-wrap">
+          <img src="assets/gifs/icons8-rocket.gif" alt="Rocket Launch" class="coming-soon-gif" />
+        </div>
+        <div class="badge-pill-inline">
+          <span class="badge-dot-pulse"></span>
+          <span>In Progress</span>
+        </div>
+        <h2 class="coming-soon-title">Experience Is In Progress</h2>
+        <p class="coming-soon-desc">
+          I'm currently building my core technical skills through rigorous coursework at <strong>KIET Ghaziabad</strong>, 
+          hands-on software projects, and algorithmic problem-solving in C &amp; C++.
+          Internships and milestone experiences will be updated here as my journey unfolds!
+        </p>
+        <div class="coming-soon-actions">
+          <a href="index.html" class="btn btn-outline">← Back to Home</a>
+          <a href="projects.html" class="btn btn-primary">View Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ LIGHT 3D FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-brand">
+            <span class="brand-marker-3d">RK</span>
+            <span class="footer-name">Ravi Kumar</span>
+          </div>
+          <p class="footer-bio">
+            B.Tech Computer Science student at KIET Ghaziabad · Problem Solver &amp; Builder.
+          </p>
+          <div class="footer-status-badge">
+            <span class="status-indicator-ping"></span>
+            <span>Open to projects &amp; collaborations</span>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-links">
+            <li><a href="index.html#home" class="footer-link">Home</a></li>
+            <li><a href="index.html#about" class="footer-link">About</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="experience.html" class="footer-link">Experience</a></li>
+            <li><a href="resume.html" class="footer-link">Resume</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social-col">
+          <h4 class="footer-col-title">Connect</h4>
+          <div class="footer-social-cards">
+            <!-- User Req 5: Updated GitHub link -->
+            <a href="https://github.com/iamravikumar-hq" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="GitHub">
+              <div class="social-card-icon">
+                <img src="assets/socialicons/github-light.svg" alt="GitHub" width="20" height="20" />
+              </div>
+              <div class="social-card-text">
+                <span class="social-card-name">GitHub</span>
+                <span class="social-card-handle">@iamravikumar-hq</span>
+              </div>
+            </a>
+            <!-- User Req 5: Updated LinkedIn link -->
+            <a href="https://www.linkedin.com/in/ravi-kumar-in" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="LinkedIn">
+              <div class="social-card-icon">
+                <img src="assets/socialicons/linkedin.svg" alt="LinkedIn" width="20" height="20" />
+              </div>
+              <div class="social-card-text">
+                <span class="social-card-name">LinkedIn</span>
+                <span class="social-card-handle">ravi-kumar-in</span>
+              </div>
+            </a>
+            <!-- User Req 12: Direct Gmail compose link -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iamravikumar.hq@gmail.com&su=Hello%20Ravi%20-%20Portfolio%20Inquiry" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="Gmail">
+              <div class="social-card-icon">
+                <img src="assets/socialicons/mail.svg" alt="Gmail" width="20" height="20" />
+              </div>
+              <div class="social-card-text">
+                <span class="social-card-name">Gmail</span>
+                <span class="social-card-handle">iamravikumar.hq</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          <p>&#169; 2026 Ravi Kumar. Crafted with clean code &amp; curiosity.</p>
+        </div>
+        <div class="footer-badge-3d">
+          <span class="tech-pill">⚡ C / C++</span>
+          <span class="tech-pill">🌐 Web</span>
+          <span class="tech-pill">🎓 KIET '28</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
