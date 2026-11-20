@@ -1,7 +1,13 @@
 // =============================================
 //  RAVI KUMAR PORTFOLIO — script.js
-//  Interactive Behaviors & Dark/Light Mode
+//  High-Performance Interactions & Dark/Light Mode
 // =============================================
+
+// Guarantee starting from the top of the front main page on initial load
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
 
 /* ══════════════════════════════════════════
    THEME TOGGLE (DARK / LIGHT MODE)
@@ -20,17 +26,17 @@
 })();
 
 /* ══════════════════════════════════════════
-   CUSTOM CURSOR (Small & Precise on Hover)
+   CUSTOM CURSOR (Silky Smooth GPU-Accelerated)
 ══════════════════════════════════════════ */
 (function initCursor() {
   const dot  = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   if (!dot || !ring) return;
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX  = mouseX;
-  let ringY  = mouseY;
+  let mouseX = -100;
+  let mouseY = -100;
+  let ringX  = -100;
+  let ringY  = -100;
   let initialized = false;
 
   document.addEventListener('mousemove', e => {
@@ -45,20 +51,20 @@
       ring.style.opacity = '1';
     }
 
-    dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
-  });
+    // Hardware accelerated GPU composite for instant, zero-lag dot tracking
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+  }, { passive: true });
 
-  // Smooth lagging ring animation
-  (function animateRing() {
-    ringX += (mouseX - ringX) * 0.16;
-    ringY += (mouseY - ringY) * 0.16;
-    ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  })();
+  // Smooth GPU lagging ring loop
+  function renderRing() {
+    ringX += (mouseX - ringX) * 0.22;
+    ringY += (mouseY - ringY) * 0.22;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(renderRing);
+  }
+  requestAnimationFrame(renderRing);
 
-  // Interactive hover targets: makes cursor pointer slightly smaller & tighter
+  // Hover targets: cursor pointer becomes slightly smaller & tighter
   const interactiveSelector = [
     'a',
     'button',
@@ -80,16 +86,16 @@
       dot.classList.add('hovered');
       ring.classList.add('hovered');
     }
-  });
+  }, { passive: true });
 
   document.addEventListener('mouseout', e => {
     if (e.target.closest(interactiveSelector)) {
       dot.classList.remove('hovered');
       ring.classList.remove('hovered');
     }
-  });
+  }, { passive: true });
 
-  // Hide cursor when leaving browser viewport
+  // Viewport exit / enter handling
   document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hidden'));
   document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-hidden'));
 })();
@@ -146,16 +152,14 @@
 
 
 /* ══════════════════════════════════════════
-   SCROLL REVEAL ANIMATIONS
+   SCROLL REVEAL ANIMATIONS (Lightweight)
 ══════════════════════════════════════════ */
 (function initReveal() {
-  // Staggered reveal for grid elements
   document.querySelectorAll('.tools-grid .tool-card, .projects-grid .project-card, .about-focus-grid .focus-card').forEach((el, i) => {
     el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.08) + 's';
+    el.style.transitionDelay = (i * 0.06) + 's';
   });
 
-  // Reveal for other major cards & headers
   const revealSelectors = [
     '.about-dev-badge',
     '.about-bio-box',
@@ -169,7 +173,7 @@
   revealSelectors.forEach(sel => {
     document.querySelectorAll(sel).forEach((el, idx) => {
       el.classList.add('reveal');
-      el.style.transitionDelay = (idx * 0.1) + 's';
+      el.style.transitionDelay = (idx * 0.08) + 's';
     });
   });
 
@@ -180,7 +184,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
@@ -188,7 +192,7 @@
 
 /* ══════════════════════════════════════════
    PROJECT MODAL & DATA
-   (Portfolio only, DSA & Calculator removed)
+   (Portfolio only, Movie Website removed per request)
 ══════════════════════════════════════════ */
 const projects = {
   portfolio: {
@@ -196,14 +200,6 @@ const projects = {
     desc:  'A responsive, high-performance personal portfolio built with HTML5, CSS3, and vanilla JavaScript. Features a precision custom cursor, fluid animated wave transitions, theme toggle (Dark/Light mode), and a SaaS-inspired aesthetic highlighting my journey as a CS student at KIET Ghaziabad.',
     tags:  ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
     img:   'assets/templates/01_home-300x267.jpg.jpeg',
-    live:  '#',
-    github:'https://github.com/iamravikumar-hq',
-  },
-  cineverse: {
-    title: 'Movie Website (CineVerse)',
-    desc:  'An upcoming modern movie discovery and streaming web application. Currently under active development — will feature real-time movie API integration, search, genre filtering, and responsive media streaming.',
-    tags:  ['Coming Soon', 'JavaScript', 'Movie API', 'UI/UX'],
-    img:   'assets/templates/07_screenshot-video-600x187-1.jpg.jpeg',
     live:  '#',
     github:'https://github.com/iamravikumar-hq',
   }
@@ -298,7 +294,6 @@ function closeModal() {
     `;
 
     try {
-      // POST directly to FormSubmit endpoint configured for Ravi Kumar
       const response = await fetch('https://formsubmit.co/ajax/iamravikumar.hq@gmail.com', {
         method: 'POST',
         headers: {
@@ -319,13 +314,12 @@ function closeModal() {
         form.reset();
         if (successBox) {
           successBox.classList.add('show');
-          setTimeout(() => successBox.classList.remove('show'), 8000);
+          setTimeout(() => successBox.classList.remove('show'), 7000);
         }
       } else {
         throw new Error('Server returned an error');
       }
     } catch (err) {
-      // Graceful fallback to direct Gmail compose
       console.warn('Form submission fallback:', err);
       if (errorBox) {
         errorBox.classList.add('show');
@@ -336,28 +330,5 @@ function closeModal() {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnContent;
     }
-  });
-})();
-
-
-/* ══════════════════════════════════════════
-   PROJECT FILTER (projects.html)
-══════════════════════════════════════════ */
-(function initProjectFilter() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards      = document.querySelectorAll('.project-card[data-tags]');
-  if (!filterBtns.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-
-      cards.forEach(card => {
-        const tags = (card.dataset.tags || '').toLowerCase();
-        card.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
-      });
-    });
   });
 })();

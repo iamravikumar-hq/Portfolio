@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ravi Kumar — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Theme Setter to prevent Flash of Unstyled Theme -->
+  <!-- Immediate Theme Setter and Scroll-to-Top to prevent opening at bottom -->
   <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
     (function () {
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -27,10 +31,11 @@
   <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
   <nav class="navbar" id="navbar">
     <div class="nav-brand">
-      <a href="index.html"><span class="brand-marker">RK</span></a>
+      <a href="index.html#home"><span class="brand-marker">RK</span></a>
     </div>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
+        <li><a href="#home"            class="nav-link">Home</a></li>
         <li><a href="#about"           class="nav-link">About</a></li>
         <li><a href="#projects"        class="nav-link">Projects</a></li>
         <li><a href="experience.html"  class="nav-link">Experience</a></li>
@@ -51,25 +56,22 @@
   <section class="hero" id="home">
     <div class="hero-content">
       <p class="hero-greeting">Hey there, I'm</p>
-      <!-- User Req 1: Ravi Kumar written in black color -->
+      <!-- Ravi Kumar written in black color -->
       <h1 class="hero-name">Ravi <span>Kumar</span></h1>
       <p class="hero-tagline">B.Tech CS Student &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Problem Solver</p>
-      <!-- User Req 6: Updated hero about me -->
       <p class="hero-about">
         I'm a Computer Science student at <strong>KIET Ghaziabad</strong>, building a strong foundation in C, C++, and problem-solving. Driven by curiosity, I enjoy experimenting with technology, learning by building, and exploring new areas of software development. I'm focused on turning what I learn into practical projects and continuously growing as a developer.
       </p>
       <div class="hero-actions">
-        <!-- User Req 2 & 5: GitHub button is NOT always orange, correct GitHub link -->
+        <!-- GitHub button: Clean modern neutral style (NOT orange, NOT black) -->
         <a href="https://github.com/iamravikumar-hq" target="_blank" rel="noopener noreferrer" class="btn btn-github">
-          <img src="assets/socialicons/github-light.svg" alt="GitHub" width="18" height="18" />
+          <img src="assets/techstackicon/github/github-original.svg" alt="GitHub" class="social-svg-icon" width="18" height="18" />
           GitHub
         </a>
-        <!-- User Req 5: Correct LinkedIn link -->
         <a href="https://www.linkedin.com/in/ravi-kumar-in" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
           <img src="assets/socialicons/linkedin.svg" alt="LinkedIn" width="18" height="18" />
           LinkedIn
         </a>
-        <!-- User Req 13: Resume button links to in-progress resume page -->
         <a href="resume.html" class="btn btn-ghost">
           <img src="assets/techstackicon/icons8-document.svg" alt="Resume" width="18" height="18" />
           Resume
@@ -77,9 +79,7 @@
       </div>
     </div>
 
-    <!-- User Req 3: "remove that scroll under linkedin" — hero-scroll completely removed -->
-
-    <!-- Animated Wave divider with Dark Mode Support -->
+    <!-- Animated Wave divider with GPU Acceleration -->
     <div class="hero-wave">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -101,13 +101,13 @@
     <div class="container">
       <div class="about-centered">
 
-        <div class="section-head" style="margin-bottom: 28px;">
+        <div class="section-head" style="margin-bottom: 24px;">
           <span class="section-eyebrow">Who I Am</span>
           <h2 class="section-title">About Me</h2>
           <span class="wavy-line"></span>
         </div>
 
-        <!-- User Req 7: Replaced unprofessional circle & green dot with modern developer card -->
+        <!-- Modern Developer Card -->
         <div class="about-dev-badge">
           <div class="dev-badge-header">
             <div class="terminal-dots">
@@ -134,7 +134,7 @@
           </div>
         </div>
 
-        <!-- User Req 7: Updated bio story -->
+        <!-- Bio story -->
         <div class="about-bio-box">
           <p class="about-lead">
             I'm <strong>Ravi Kumar</strong>, a B.Tech Computer Science student at <strong>KIET Ghaziabad</strong>, building a strong foundation in C, C++, and software problem-solving.
@@ -144,7 +144,7 @@
           </p>
         </div>
 
-        <!-- User Req 8: Replaced 4 counter boxes with 3 sleek Focus & Exploration Cards -->
+        <!-- 3 Focus & Exploration Cards -->
         <div class="about-focus-grid">
           <div class="focus-card">
             <div class="focus-icon-wrap">🧩</div>
@@ -247,9 +247,9 @@
         <span class="wavy-line"></span>
       </div>
 
+      <!-- Projects Grid: Only Portfolio Website displayed per request -->
       <div class="projects-grid" id="projectsGrid">
 
-        <!-- Portfolio Project Card -->
         <button
           class="project-card"
           onclick="openModal('portfolio')"
@@ -263,33 +263,12 @@
           </div>
           <div class="project-card-info">
             <h3 class="project-name">Portfolio Website</h3>
-            <p class="project-desc-short">Personal developer portfolio crafted with vanilla HTML, CSS, JavaScript, fluid animations, and custom theme modes.</p>
+            <p class="project-desc-short">Personal developer portfolio crafted with vanilla HTML, CSS, JavaScript, theme switcher, fluid animations, and clean responsive design.</p>
             <div class="project-tags">
               <span class="tag">HTML5</span>
               <span class="tag">CSS3</span>
               <span class="tag">JavaScript</span>
               <span class="tag">Dark Mode</span>
-            </div>
-          </div>
-        </button>
-
-        <!-- Upcoming Movie Website Preview Card -->
-        <button
-          class="project-card project-card-teaser"
-          onclick="openModal('cineverse')"
-          aria-label="Upcoming Project: CineVerse"
-        >
-          <div class="project-card-img">
-            🎬
-          </div>
-          <div class="project-card-info">
-            <div class="teaser-badge">🚀 In Development</div>
-            <h3 class="project-name">Movie Website (CineVerse)</h3>
-            <p class="project-desc-short">Modern movie streaming and discovery platform featuring live API catalog search, trending filters, and video playback.</p>
-            <div class="project-tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">Movie API</span>
-              <span class="tag">Upcoming</span>
             </div>
           </div>
         </button>
@@ -316,81 +295,45 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════ LIGHT 3D FOOTER (Req 10) ═══════════════════════════ -->
+  <!-- ═══════════════════════════ CLEAN MINIMAL FOOTER ═══════════════════════════ -->
+  <!-- Name and Navigation removed per requirement -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand-col">
-          <div class="footer-brand">
-            <span class="brand-marker-3d">RK</span>
-            <span class="footer-name">Ravi Kumar</span>
-          </div>
-          <p class="footer-bio">
-            B.Tech Computer Science student at KIET Ghaziabad · Problem Solver &amp; Developer.
-          </p>
-          <div class="footer-status-badge">
-            <span class="status-indicator-ping"></span>
-            <span>Open to projects &amp; collaborations</span>
-          </div>
+      <div class="footer-content">
+        <div class="footer-social-row">
+          <a href="https://github.com/iamravikumar-hq" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="GitHub">
+            <div class="social-card-icon">
+              <img src="assets/techstackicon/github/github-original.svg" alt="GitHub" class="social-svg-icon" width="18" height="18" />
+            </div>
+            <div class="social-card-text">
+              <span class="social-card-name">GitHub</span>
+              <span class="social-card-handle">@iamravikumar-hq</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/ravi-kumar-in" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="LinkedIn">
+            <div class="social-card-icon">
+              <img src="assets/socialicons/linkedin.svg" alt="LinkedIn" width="18" height="18" />
+            </div>
+            <div class="social-card-text">
+              <span class="social-card-name">LinkedIn</span>
+              <span class="social-card-handle">ravi-kumar-in</span>
+            </div>
+          </a>
+
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iamravikumar.hq@gmail.com&su=Hello%20Ravi%20-%20Portfolio%20Inquiry" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="Gmail">
+            <div class="social-card-icon">
+              <img src="assets/socialicons/mail.svg" alt="Gmail" width="18" height="18" />
+            </div>
+            <div class="social-card-text">
+              <span class="social-card-name">Gmail</span>
+              <span class="social-card-handle">iamravikumar.hq</span>
+            </div>
+          </a>
         </div>
 
-        <div class="footer-nav-col">
-          <h4 class="footer-col-title">Navigation</h4>
-          <ul class="footer-nav-links">
-            <li><a href="#home" class="footer-link">Home</a></li>
-            <li><a href="#about" class="footer-link">About</a></li>
-            <li><a href="projects.html" class="footer-link">Projects</a></li>
-            <li><a href="experience.html" class="footer-link">Experience</a></li>
-            <li><a href="resume.html" class="footer-link">Resume</a></li>
-            <li><a href="contact.html" class="footer-link">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-social-col">
-          <h4 class="footer-col-title">Connect</h4>
-          <div class="footer-social-cards">
-            <!-- User Req 5: Updated GitHub link -->
-            <a href="https://github.com/iamravikumar-hq" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="GitHub">
-              <div class="social-card-icon">
-                <img src="assets/socialicons/github-light.svg" alt="GitHub" width="20" height="20" />
-              </div>
-              <div class="social-card-text">
-                <span class="social-card-name">GitHub</span>
-                <span class="social-card-handle">@iamravikumar-hq</span>
-              </div>
-            </a>
-            <!-- User Req 5: Updated LinkedIn link -->
-            <a href="https://www.linkedin.com/in/ravi-kumar-in" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="LinkedIn">
-              <div class="social-card-icon">
-                <img src="assets/socialicons/linkedin.svg" alt="LinkedIn" width="20" height="20" />
-              </div>
-              <div class="social-card-text">
-                <span class="social-card-name">LinkedIn</span>
-                <span class="social-card-handle">ravi-kumar-in</span>
-              </div>
-            </a>
-            <!-- User Req 12: Direct Gmail compose link -->
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iamravikumar.hq@gmail.com&su=Hello%20Ravi%20-%20Portfolio%20Inquiry" target="_blank" rel="noopener noreferrer" class="footer-social-card" aria-label="Gmail">
-              <div class="social-card-icon">
-                <img src="assets/socialicons/mail.svg" alt="Gmail" width="20" height="20" />
-              </div>
-              <div class="social-card-text">
-                <span class="social-card-name">Gmail</span>
-                <span class="social-card-handle">iamravikumar.hq</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-copy">
-          <p>&#169; 2026 Ravi Kumar. Crafted with clean code &amp; curiosity.</p>
-        </div>
-        <div class="footer-badge-3d">
-          <span class="tech-pill">⚡ C / C++</span>
-          <span class="tech-pill">🌐 Web</span>
-          <span class="tech-pill">🎓 KIET '28</span>
+        <div class="footer-bottom">
+          <p class="footer-copy">&#169; 2026 Ravi Kumar. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -413,7 +356,7 @@
             Live Demo
           </a>
           <a href="https://github.com/iamravikumar-hq" id="modalGithub" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            <img src="assets/techstackicon/github/github-original.svg" alt="GitHub" width="16" height="16" />
+            <img src="assets/techstackicon/github/github-original.svg" alt="GitHub" class="social-svg-icon" width="16" height="16" />
             Source Code
           </a>
         </div>
